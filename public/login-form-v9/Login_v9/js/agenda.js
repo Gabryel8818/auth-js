@@ -16,52 +16,22 @@ var firebaseConfig = {
 
 
 // notes
-const notes = document.querySelector('.notes')
-const setupNotes = data => {
-    if (data.length) {
-        let html = ''
-        data.forEach(doc => {
-            const note = doc.data()
-            console.log(note)
-            const li = `
-            <li style="color:purple;"class= "list-group-item list-group-item-action ">
-                <h5>${note.title}</h5>
-                <p>${note.description}</p>
-                <button style="color:purple;" class="add" onclick="editNote()"> Edit </button>
-                <button style="color:purple;" class="add" onclick="delNote()"> Del </button>
-
-            </li>
-                    
-            `
-            html += li
-        })
-
-        notes.innerHTML = html
-    }  else {
-        notes.innerHTML = '<p class="text-center">Não contem nenhuma nota</p>'
-    }
-}
-
-// events
-//list
-
 function readNotes(){
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            fs.collection('notes')
-                .get()
-                .then((snapshot) => {
-                    console.log(snapshot.docs)
-                    setupNotes(snapshot.docs)
-                })
-        } else {
-        console.log('logout')
-        
-        }
+    fs.collection("notes").onSnapshot(function(snapshot){
+        document.querySelector(".notes").innerHTML=''
+        snapshot.forEach(function(noteValue) {
+            document.querySelector(".notes").innerHTML+=`
+            <li style="color:purple;"class= "list-group-item list-group-item-action ">
+            <h5>${noteValue.data().title}</h5>
+            <p>${noteValue.data().description}</p>
+            <p>${noteValue.id}</p>
+            <button style="color:purple;" class="add" onclick="editNote('${noteValue.id}')"> Edit </button>
+            <button style="color:purple;" class="add" onclick="delNote('${noteValue.id}')"> Del </button>
+        </li>
+            `
+        })
     })
 }
-
-
 
 
 document.getElementById('agenda-form').addEventListener("submit", (e)=>{
