@@ -24,7 +24,6 @@ function readNotes(){
             <li style="color:purple;"class= "list-group-item list-group-item-action ">
             <h5>${noteValue.data().title}</h5>
             <p>${noteValue.data().description}</p>
-            <p>${noteValue.id}</p>
             <button style="color:purple;" class="add" onclick="editNote('${noteValue.id}')"> Edit </button>
             <button style="color:purple;" class="add" onclick="delNote('${noteValue.id}')"> Del </button>
         </li>
@@ -51,7 +50,7 @@ function addNote(title,description) {
 
     let db = fs.collection('notes')
     db.add(newNote).then(()=> {
-        swal("Nota Adicionada", "Você editou uma nota", "success");  
+        swal("Nota Adicionada", "Você adicionou uma nota", "success");  
     })
         .catch((error) => {
             swal("Error", "error", "error");  
@@ -60,9 +59,35 @@ function addNote(title,description) {
 
 }
 
-function editNote() {
-    swal("Nota Editada", "Você editou uma nota", "success");  
-
+function editNote(id) {
+    Swal.fire({
+        title: 'Editar Nota',
+        html: `<input type="text" id="title" class="swal2-input" placeholder="Titulo">
+        <input type="text" id="description" class="swal2-input" placeholder="Descrição">`,
+        confirmButtonText: 'Confirmar',
+        focusConfirm: false,
+        preConfirm: () => {
+          const title = Swal.getPopup().querySelector('#title').value
+          const description = Swal.getPopup().querySelector('#description').value
+          if (!title || !description) {
+            Swal.showValidationMessage(`Please enter title and desc`)
+          }
+          return { title: title, description: description }
+        }
+      }).then((result) => {
+          var noteUpdate = {
+              title: result.value.title,
+              description: result.value.description
+          }
+        let db = fs.collection("notes").doc(id)
+        db.set(noteUpdate).then(()=> {
+            Swal.fire(`
+                Novo Titulo: ${result.value.title}
+                Nova Descrição: ${result.value.description}
+        `.trim())
+        })
+        
+      })
 }
 
 function delNote(id){
