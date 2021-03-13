@@ -11,6 +11,7 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   const auth = firebase.auth()
+  var authGoogle = document.querySelector("#authGoogle")
 
 
 // SIGNIN
@@ -23,10 +24,30 @@ signinForm.addEventListener('submit', (e) => {
     const email = document.querySelector('#signin-email').value
     const senha= document.querySelector('#signin-password').value
 
-    auth
-        .signInWithEmailAndPassword(email, senha)
-        .then(userCredential => {
-
-            window.location.href = "agenda.html";
+    firebase.auth()
+            .signInWithEmailAndPassword(email, senha)
+            .then(userCredential => {
+                window.location.href = "agenda.html";
         })
+
 })
+
+
+authGoogle.addEventListener('click', function() {
+  var provider = new firebase.auth.GoogleAuthProvider()
+  authProvider(provider)
+})
+
+
+
+function authProvider(provider) {
+    firebase.auth()
+        .signInWithPopup(provider)
+        .then(function (result) {
+            console.log(result);
+            window.location.href = "agenda.html";
+        }).catch(function (error) {
+            console.log(error);
+
+        });
+}

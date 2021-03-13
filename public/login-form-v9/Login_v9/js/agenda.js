@@ -12,11 +12,13 @@ var firebaseConfig = {
   firebase.analytics();
   const auth = firebase.auth()
   const fs = firebase.firestore()
-
+  var logout = document.querySelector("#logout")
 
 
 // notes
 function readNotes(){
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
     fs.collection("notes").onSnapshot(function(snapshot){
         document.querySelector(".notes").innerHTML=''
         snapshot.forEach(function(noteValue) {
@@ -29,7 +31,12 @@ function readNotes(){
         </li>
             `
         })
-    })
+    })  } else {
+      swal("Error", "Você não esta conectado", "error");
+
+  }
+});
+
 }
 
 
@@ -50,10 +57,10 @@ function addNote(title,description) {
 
     let db = fs.collection('notes')
     db.add(newNote).then(()=> {
-        swal("Nota Adicionada", "Você adicionou uma nota", "success");  
+        swal("Nota Adicionada", "Você adicionou uma nota", "success");
     })
         .catch((error) => {
-            swal("Error", "error", "error");  
+            swal("Error", "error", "error");
     })
     readNotes()
 
@@ -86,18 +93,30 @@ function editNote(id) {
                 Nova Descrição: ${result.value.description}
         `.trim())
         })
-        
+
       })
 }
 
 function delNote(id){
     fs.collection("notes").doc(id).delete().then(()=>{
-        swal("Nota Deletada", "Você deletou uma nota", "error");  
+        swal("Nota Deletada", "Você deletou uma nota", "error");
     })
     .catch((error) => {
-        swal("Error", "error", "error");  
+        swal("Error", "error", "error");
     })
-    
+
 }
+
+logout.addEventListener('click', function () {
+    firebase
+        .auth()
+        .signOut()
+        .then(function () {
+          window.location.href = "index.html";
+
+        }, function (error) {
+            console.error(error);
+        });
+});
 
 readNotes()

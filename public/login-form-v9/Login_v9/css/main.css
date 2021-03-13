@@ -7,30 +7,30 @@
 
 @font-face {
   font-family: SourceSansPro-Regular;
-  src: url('../fonts/source-sans-pro/SourceSansPro-Regular.ttf'); 
+  src: url('../fonts/source-sans-pro/SourceSansPro-Regular.ttf');
 }
 
 @font-face {
   font-family: SourceSansPro-Bold;
-  src: url('../fonts/source-sans-pro/SourceSansPro-Bold.ttf'); 
+  src: url('../fonts/source-sans-pro/SourceSansPro-Bold.ttf');
 }
 
 @font-face {
   font-family: SourceSansPro-SemiBold;
-  src: url('../fonts/source-sans-pro/SourceSansPro-SemiBold.ttf'); 
+  src: url('../fonts/source-sans-pro/SourceSansPro-SemiBold.ttf');
 }
 
 @font-face {
   font-family: JosefinSans-Bold;
-  src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf'); 
+  src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf');
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -147,7 +147,7 @@ iframe {
 [ login ]*/
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -165,7 +165,7 @@ iframe {
   z-index: 1;
 }
 .notes {
-  width: 50%;  
+  width: 50%;
   min-height: 50vh;
   display:flexbox;
   justify-content: center;
@@ -324,6 +324,38 @@ iframe {
   -o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
   -ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
 }
+.logout-form-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:  10px;
+  margin:left;
+  min-width: 100px;
+  height: 40px;
+  background-color: #bd59d4;
+  border-radius: 25px;
+
+  font-family: SourceSansPro-SemiBold;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
+  -moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
+  -webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
+  -o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
+  -ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
+}
 
 .login100-form-btn:hover {
   background-color: #4b2354;
@@ -440,7 +472,7 @@ iframe {
   -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
   -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
   -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
-  
+
 }
 
 
@@ -461,7 +493,7 @@ iframe {
   -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
   -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
   -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
-  
+
 }
 
 
@@ -494,5 +526,5 @@ iframe {
   text-align: center;
   float:left;
   align:right;
-  
+
 }

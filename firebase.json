@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "public/login-form-v9/Login_v9/",
     "ignore": [
       "firebase.json",
       "**/.*",

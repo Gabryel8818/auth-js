@@ -12,10 +12,10 @@
             else {
                 $(this).parent().addClass('true-validate');
             }
-        })    
+        })
     })
-  
-  
+
+
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
@@ -72,7 +72,7 @@
         $(thisAlert).removeClass('alert-validate');
         $(thisAlert).find('.btn-hide-validate').remove();
     }
-    
-    
+
+
 
 })(jQuery);
