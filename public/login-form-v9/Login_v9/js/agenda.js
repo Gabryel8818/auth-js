@@ -24,16 +24,15 @@ function readNotes(){
         snapshot.forEach(function(noteValue) {
             document.querySelector(".notes").innerHTML+=`
             <li style="color:purple;"class= "list-group-item list-group-item-action ">
-            <h5>${noteValue.data().title}</h5>
-            <p>${noteValue.data().description}</p>
-            <button style="color:purple;" class="add" onclick="editNote('${noteValue.id}')"> Edit </button>
-            <button style="color:purple;" class="add" onclick="delNote('${noteValue.id}')"> Del </button>
-        </li>
+              <h5>${noteValue.data().title}</h5>
+              <p>${noteValue.data().description}</p>
+              <button style="color:purple;" class="add" onclick="editNote('${noteValue.id}')"> Edit </button>
+              <button style="color:purple;" class="add" onclick="delNote('${noteValue.id}')"> Del </button>
+            </li>
             `
         })
     })  } else {
-      swal("Error", "Você não esta conectado", "error");
-
+        swal("Error", "Você não esta conectado", "error");
   }
 });
 
@@ -116,7 +115,7 @@ logout.addEventListener('click', function () {
 
         }, function (error) {
             console.error(error);
-        });
+          });
 });
 
 readNotes()
